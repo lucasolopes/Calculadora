@@ -2,6 +2,8 @@ namespace Calculadora
 {
     public partial class Main : Form
     {
+        private Rectangle originalFormRect;
+
         private Rectangle textBoxTxtInput;
         private Rectangle buttonMcOriginalReact;
         private Rectangle buttonMrOriginalReact;
@@ -9,6 +11,7 @@ namespace Calculadora
         private Rectangle buttonMminusOriginalReact;
         private Rectangle buttonMsOriginalReact;
         private Rectangle buttonMhistOriginalReact;
+        private Rectangle buttonHistoryOriginalReact;
         private Rectangle buttonPorcentOriginalReact;
         private Rectangle buttonClearOriginalReact;
         private Rectangle buttonClearAllOriginalReact;
@@ -33,9 +36,49 @@ namespace Calculadora
         private Rectangle button0OriginalReact;
         private Rectangle buttonSeparatorOriginalReact;
         private Rectangle buttonEqualOriginalReact;
+        private Rectangle buttonMenuOrinalRect;
+        private Rectangle lblHistoryOriginalRect;
+        private Rectangle lblTypeOriginalRect;
+        private Rectangle lblNameOriginalRect;
 
+        private float buttonMenuFontSize;
+        private float lblHistoryFontSize;
+        private float lblTypeFontSize;
+        private float lblNameFontSize;
+        private float textBoxTxtInputFontSize;
+        private float buttonMcFontSize;
+        private float buttonMrFontSize;
+        private float buttonMplusFontSize;
+        private float buttonMminusFontSize;
+        private float buttonMsFontSize;
+        private float buttonMhistFontSize;
+        private float buttonHistoryFontSize;
+        private float buttonPorcentFontSize;
+        private float buttonClearFontSize;
+        private float buttonClearAllFontSize;
+        private float buttonDellFontSize;
+        private float buttonAboutXFontSize;
+        private float buttonSquareFontSize;
+        private float buttonRootOfTwoFontSize;
+        private float buttonDivisionFontSize;
+        private float button7FontSize;
+        private float button8FontSize;
+        private float button9FontSize;
+        private float buttonXFontSize;
+        private float button4FontSize;
+        private float button5FontSize;
+        private float button6FontSize;
+        private float buttonSubtractFontSize;
+        private float button1FontSize;
+        private float button2FontSize;
+        private float button3FontSize;
+        private float buttonPlusFontSize;
+        private float buttonInvertFontSize;
+        private float button0FontSize;
+        private float buttonSeparatorFontSize;
+        private float buttonEqualFontSize;
 
-        private Size formoriginalSize;
+        private float fontScale = 1f;
 
         public Main()
         {
@@ -45,103 +88,153 @@ namespace Calculadora
 
         private void Main_Load(object sender, EventArgs e)
         {
-            formoriginalSize = this.Size;
+            originalFormRect = new Rectangle(this.Location, this.Size);
 
+            textBoxTxtInput = new Rectangle(txt_input.Location, txt_input.Size);
+            buttonMcOriginalReact = new Rectangle(btn_MC.Location, btn_MC.Size);
+            buttonMrOriginalReact = new Rectangle(btn_MR.Location, btn_MR.Size);
+            buttonMplusOriginalReact = new Rectangle(btn_Mplus.Location, btn_Mplus.Size);
+            buttonMminusOriginalReact = new Rectangle(btn_Mminus.Location, btn_Mminus.Size);
+            buttonMsOriginalReact = new Rectangle(btn_Ms.Location, btn_Ms.Size);
+            buttonMhistOriginalReact = new Rectangle(btn_hist.Location, btn_hist.Size);
+            buttonHistoryOriginalReact = new Rectangle(btn_history.Location, btn_history.Size);
+            buttonPorcentOriginalReact = new Rectangle(btn_porcent.Location, btn_porcent.Size);
+            buttonClearOriginalReact = new Rectangle(btn_clear.Location, btn_clear.Size);
+            buttonClearAllOriginalReact = new Rectangle(btn_clearAll.Location, btn_clearAll.Size);
+            buttonDellOriginalReact = new Rectangle(btn_ruber.Location, btn_ruber.Size);
+            buttonAboutXOriginalReact = new Rectangle(btn_aboutX.Location, btn_aboutX.Size);
+            buttonSquareOriginalReact = new Rectangle(btn_square.Location, btn_square.Size);
+            buttonRootOfTwoOriginalReact = new Rectangle(btn_rootOfTwo.Location, btn_rootOfTwo.Size);
+            buttonDivisionOriginalReact = new Rectangle(btn_division.Location, btn_division.Size);
+            button7OriginalReact = new Rectangle(btn_7.Location, btn_7.Size);
+            button8OriginalReact = new Rectangle(btn_8.Location, btn_8.Size);
+            button9OriginalReact = new Rectangle(btn_9.Location, btn_9.Size);
+            buttonXOriginalReact = new Rectangle(btn_multiply.Location, btn_multiply.Size);
+            button4OriginalReact = new Rectangle(btn_4.Location, btn_4.Size);
+            button5OriginalReact = new Rectangle(btn_5.Location, btn_5.Size);
+            button6OriginalReact = new Rectangle(btn_6.Location, btn_6.Size);
+            buttonSubtractOriginalReact = new Rectangle(btn_subtract.Location, btn_subtract.Size);
+            button1OriginalReact = new Rectangle(btn_1.Location, btn_1.Size);
+            button2OriginalReact = new Rectangle(btn_2.Location, btn_2.Size);
+            button3OriginalReact = new Rectangle(btn_3.Location, btn_3.Size);
+            buttonPlusOriginalReact = new Rectangle(btn_add.Location, btn_add.Size);
+            buttonInvertOriginalReact = new Rectangle(btn_invert.Location, btn_invert.Size);
+            button0OriginalReact = new Rectangle(btn_0.Location, btn_0.Size);
+            buttonSeparatorOriginalReact = new Rectangle(btn_separator.Location, btn_separator.Size);
+            buttonEqualOriginalReact = new Rectangle(btn_equal.Location, btn_equal.Size);
+            buttonMenuOrinalRect = new Rectangle(btn_menu.Location, btn_menu.Size);
+            lblHistoryOriginalRect = new Rectangle(lbl_history.Location, lbl_history.Size);
+            lblTypeOriginalRect = new Rectangle(lbl_type.Location, lbl_type.Size);
+            lblNameOriginalRect = new Rectangle(lbl_name.Location, lbl_name.Size);
 
+            textBoxTxtInputFontSize = txt_input.Font.Size;
+            buttonMcFontSize = btn_MC.Font.Size;
+            buttonMrFontSize = btn_MR.Font.Size;
+            buttonMplusFontSize = btn_Mplus.Font.Size;
+            buttonMminusFontSize = btn_Mminus.Font.Size;
+            buttonMsFontSize = btn_Ms.Font.Size;
+            buttonMhistFontSize = btn_hist.Font.Size;
+            buttonHistoryFontSize = btn_history.Font.Size;
+            buttonPorcentFontSize = btn_porcent.Font.Size;
+            buttonClearFontSize = btn_clear.Font.Size;
+            buttonClearAllFontSize = btn_clearAll.Font.Size;
+            buttonDellFontSize = btn_ruber.Font.Size;
+            buttonAboutXFontSize = btn_aboutX.Font.Size;
+            buttonSquareFontSize = btn_square.Font.Size;
+            buttonRootOfTwoFontSize = btn_rootOfTwo.Font.Size;
+            buttonDivisionFontSize = btn_division.Font.Size;
+            button7FontSize = btn_7.Font.Size;
+            button8FontSize = btn_8.Font.Size;
+            button9FontSize = btn_9.Font.Size;
+            buttonXFontSize = btn_multiply.Font.Size;
+            button4FontSize = btn_4.Font.Size;
+            button5FontSize = btn_5.Font.Size;
+            button6FontSize = btn_6.Font.Size;
+            buttonSubtractFontSize = btn_subtract.Font.Size;
+            button1FontSize = btn_1.Font.Size;
+            button2FontSize = btn_2.Font.Size;
+            button3FontSize = btn_3.Font.Size;
+            buttonPlusFontSize = btn_add.Font.Size;
+            buttonInvertFontSize = btn_invert.Font.Size;
+            button0FontSize = btn_0.Font.Size;
+            buttonSeparatorFontSize = btn_separator.Font.Size;
+            buttonEqualFontSize = btn_equal.Font.Size;
+            buttonMenuFontSize = btn_menu.Font.Size;
+            lblHistoryFontSize = lbl_history.Font.Size;
+            lblTypeFontSize = lbl_type.Font.Size;
+            lblNameFontSize = lbl_name.Font.Size;
 
-            textBoxTxtInput = new Rectangle(txt_input.Location.X, txt_input.Location.Y, txt_input.Width, txt_input.Height);
-            buttonMcOriginalReact = new Rectangle(btn_MC.Location.X, btn_MC.Location.Y, btn_MC.Width, btn_MC.Height);
-            buttonMrOriginalReact = new Rectangle(btn_MR.Location.X, btn_MR.Location.Y, btn_MR.Width, btn_MR.Height);
-            buttonMplusOriginalReact = new Rectangle(btn_Mplus.Location.X, btn_Mplus.Location.Y, btn_Mplus.Width, btn_Mplus.Height);
-            buttonMminusOriginalReact = new Rectangle(btn_Mminus.Location.X, btn_Mminus.Location.Y, btn_Mminus.Width, btn_Mminus.Height);
-            buttonMsOriginalReact = new Rectangle(btn_Ms.Location.X, btn_Ms.Location.Y, btn_Ms.Width, btn_Ms.Height);
-            buttonMhistOriginalReact = new Rectangle(btn_hist.Location.X, btn_hist.Location.Y, btn_hist.Width, btn_hist.Height);
-            buttonPorcentOriginalReact = new Rectangle(btn_porcent.Location.X, btn_porcent.Location.Y, btn_porcent.Width, btn_porcent.Height);
-            buttonClearOriginalReact = new Rectangle(btn_clear.Location.X, btn_clear.Location.Y, btn_clear.Width, btn_clear.Height);
-            buttonClearAllOriginalReact = new Rectangle(btn_clearAll.Location.X, btn_clearAll.Location.Y, btn_clearAll.Width, btn_clearAll.Height);
-            buttonDellOriginalReact = new Rectangle(btn_ruber.Location.X, btn_ruber.Location.Y, btn_ruber.Width, btn_ruber.Height);
-            buttonAboutXOriginalReact = new Rectangle(btn_aboutX.Location.X, btn_aboutX.Location.Y, btn_aboutX.Width, btn_aboutX.Height);
-            buttonSquareOriginalReact = new Rectangle(btn_square.Location.X, btn_square.Location.Y, btn_square.Width, btn_square.Height);
-            buttonRootOfTwoOriginalReact = new Rectangle(btn_rootOfTwo.Location.X, btn_rootOfTwo.Location.Y, btn_rootOfTwo.Width, btn_rootOfTwo.Height);
-            buttonDivisionOriginalReact = new Rectangle(btn_division.Location.X, btn_division.Location.Y, btn_division.Width, btn_division.Height);
-            button7OriginalReact = new Rectangle(btn_7.Location.X, btn_7.Location.Y, btn_7.Width, btn_7.Height);
-            button8OriginalReact = new Rectangle(btn_8.Location.X, btn_8.Location.Y, btn_8.Width, btn_8.Height);
-            button9OriginalReact = new Rectangle(btn_9.Location.X, btn_9.Location.Y, btn_9.Width, btn_9.Height);
-            buttonXOriginalReact = new Rectangle(btn_multiply.Location.X, btn_multiply.Location.Y, btn_multiply.Width, btn_multiply.Height);
-            button4OriginalReact = new Rectangle(btn_4.Location.X, btn_4.Location.Y, btn_4.Width, btn_4.Height);
-            button5OriginalReact = new Rectangle(btn_5.Location.X, btn_5.Location.Y, btn_5.Width, btn_5.Height);
-            button6OriginalReact = new Rectangle(btn_6.Location.X, btn_6.Location.Y, btn_6.Width, btn_6.Height);
-            buttonSubtractOriginalReact = new Rectangle(btn_subtract.Location.X, btn_subtract.Location.Y, btn_subtract.Width, btn_subtract.Height);
-            button1OriginalReact = new Rectangle(btn_1.Location.X, btn_1.Location.Y, btn_1.Width, btn_1.Height);
-            button2OriginalReact = new Rectangle(btn_2.Location.X, btn_2.Location.Y, btn_2.Width, btn_2.Height);
-            button3OriginalReact = new Rectangle(btn_3.Location.X, btn_3.Location.Y, btn_3.Width, btn_3.Height);
-            buttonPlusOriginalReact = new Rectangle(btn_add.Location.X, btn_add.Location.Y, btn_add.Width, btn_add.Height);
-            buttonInvertOriginalReact = new Rectangle(btn_invert.Location.X, btn_invert.Location.Y, btn_invert.Width, btn_invert.Height);
-            button0OriginalReact = new Rectangle(btn_0.Location.X, btn_0.Location.Y, btn_0.Width, btn_0.Height);
-            buttonSeparatorOriginalReact = new Rectangle(btn_separator.Location.X, btn_separator.Location.Y, btn_separator.Width, btn_separator.Height);
-            buttonEqualOriginalReact = new Rectangle(btn_equal.Location.X, btn_equal.Location.Y, btn_equal.Width, btn_equal.Height);
-        }
-        
-        private void resizeChildrenControls()
-        {
-
-            ResizeControl(textBoxTxtInput, txt_input);
-            ResizeControl(buttonMcOriginalReact, btn_MC);
-            ResizeControl(buttonMrOriginalReact, btn_MR);
-            ResizeControl(buttonMplusOriginalReact, btn_Mplus);
-            ResizeControl(buttonMminusOriginalReact, btn_Mminus);
-            ResizeControl(buttonMsOriginalReact, btn_Ms);
-            ResizeControl(buttonMhistOriginalReact, btn_hist);
-            ResizeControl(buttonPorcentOriginalReact, btn_porcent);
-            ResizeControl(buttonClearOriginalReact, btn_clear);
-            ResizeControl(buttonClearAllOriginalReact, btn_clearAll);
-            ResizeControl(buttonDellOriginalReact, btn_ruber);
-            ResizeControl(buttonAboutXOriginalReact, btn_aboutX);
-            ResizeControl(buttonSquareOriginalReact, btn_square);
-            ResizeControl(buttonRootOfTwoOriginalReact, btn_rootOfTwo);
-            ResizeControl(buttonDivisionOriginalReact, btn_division);
-            ResizeControl(button7OriginalReact, btn_7);
-            ResizeControl(button8OriginalReact, btn_8);
-            ResizeControl(button9OriginalReact, btn_9);
-            ResizeControl(buttonXOriginalReact, btn_multiply);
-            ResizeControl(button4OriginalReact, btn_4);
-            ResizeControl(button5OriginalReact, btn_5);
-            ResizeControl(button6OriginalReact, btn_6);
-            ResizeControl(buttonSubtractOriginalReact, btn_subtract);
-            ResizeControl(button1OriginalReact, btn_1);
-            ResizeControl(button2OriginalReact, btn_2);
-            ResizeControl(button3OriginalReact, btn_3);
-            ResizeControl(buttonPlusOriginalReact, btn_add);
-            ResizeControl(buttonInvertOriginalReact, btn_invert);
-            ResizeControl(button0OriginalReact, btn_0);
-            ResizeControl(buttonSeparatorOriginalReact, btn_separator);
-            ResizeControl(buttonEqualOriginalReact, btn_equal);
-        }
-
-
-        private void ResizeControl(Rectangle originalControlRect, Control control)
-        {
-            float xRatio = (float)(this.Width) / (float)(formoriginalSize.Width);
-            float yRatio = (float)(this.Height) / (float)(formoriginalSize.Height);
-
-            int newX = (int)(originalControlRect.X * xRatio);
-            int newY = (int)(originalControlRect.Y * yRatio);
-            
-            int newWidth = (int)(originalControlRect.Width * xRatio);
-            int newHeight = (int)(originalControlRect.Height * yRatio);
-
-            control.Location = new Point(newX, newY);
-            control.Size = new Size(newWidth, newHeight);
+            resizeChildrenControls();
         }
 
         private void Main_Resize(object sender, EventArgs e)
         {
-           resizeChildrenControls();
+            resizeChildrenControls();
+        }
+
+        private void resizeChildrenControls()
+        {
+
+            ResizeControl(buttonMenuOrinalRect, btn_menu, buttonMenuFontSize);
+            ResizeControl(lblHistoryOriginalRect, lbl_history, lblHistoryFontSize);
+            ResizeControl(lblTypeOriginalRect, lbl_type, lblTypeFontSize);
+            ResizeControl(lblNameOriginalRect, lbl_name, lblNameFontSize);
+            ResizeControl(textBoxTxtInput, txt_input, textBoxTxtInputFontSize);
+            ResizeControl(buttonMcOriginalReact, btn_MC, buttonMcFontSize);
+            ResizeControl(buttonMrOriginalReact, btn_MR, buttonMrFontSize);
+            ResizeControl(buttonMplusOriginalReact, btn_Mplus, buttonMplusFontSize);
+            ResizeControl(buttonMminusOriginalReact, btn_Mminus, buttonMminusFontSize);
+            ResizeControl(buttonMsOriginalReact, btn_Ms, buttonMsFontSize);
+            ResizeControl(buttonMhistOriginalReact, btn_hist, buttonMhistFontSize);
+            ResizeControl(buttonPorcentOriginalReact, btn_porcent, buttonPorcentFontSize);
+            ResizeControl(buttonClearOriginalReact, btn_clear, buttonClearFontSize);
+            ResizeControl(buttonClearAllOriginalReact, btn_clearAll, buttonClearAllFontSize);
+            ResizeControl(buttonDellOriginalReact, btn_ruber, buttonDellFontSize);
+            ResizeControl(buttonAboutXOriginalReact, btn_aboutX, buttonAboutXFontSize);
+            ResizeControl(buttonSquareOriginalReact, btn_square, buttonSquareFontSize);
+            ResizeControl(buttonRootOfTwoOriginalReact, btn_rootOfTwo, buttonRootOfTwoFontSize);
+            ResizeControl(buttonDivisionOriginalReact, btn_division, buttonDivisionFontSize);
+            ResizeControl(button7OriginalReact, btn_7, button7FontSize);
+            ResizeControl(button8OriginalReact, btn_8, button8FontSize);
+            ResizeControl(button9OriginalReact, btn_9, button9FontSize);
+            ResizeControl(buttonXOriginalReact, btn_multiply, buttonXFontSize);
+            ResizeControl(button4OriginalReact, btn_4, button4FontSize);
+            ResizeControl(button5OriginalReact, btn_5, button5FontSize);
+            ResizeControl(button6OriginalReact, btn_6, button6FontSize);
+            ResizeControl(buttonSubtractOriginalReact, btn_subtract, buttonSubtractFontSize);
+            ResizeControl(button1OriginalReact, btn_1, button1FontSize);
+            ResizeControl(button2OriginalReact, btn_2, button2FontSize);
+            ResizeControl(button3OriginalReact, btn_3, button3FontSize);
+            ResizeControl(buttonPlusOriginalReact, btn_add, buttonPlusFontSize);
+            ResizeControl(buttonInvertOriginalReact, btn_invert,buttonInvertFontSize);
+            ResizeControl(button0OriginalReact, btn_0,button0FontSize);
+            ResizeControl(buttonSeparatorOriginalReact, btn_separator,buttonSeparatorFontSize);
+            ResizeControl(buttonEqualOriginalReact, btn_equal,buttonEqualFontSize);
+            ResizeControl(buttonHistoryOriginalReact, btn_history, buttonHistoryFontSize);
         }
 
 
+        private void ResizeControl(Rectangle originalControlRect, Control control, float originalFontSize)
+        {
+            
+            float xRatio = (float)this.ClientRectangle.Width / (float)originalFormRect.Width;
+            float yRatio = (float)this.ClientRectangle.Height / (float)originalFormRect.Height;
 
+            float newX = originalControlRect.Location.X * xRatio;
+            float newY = originalControlRect.Location.Y * yRatio;
 
+            control.Location = new Point((int)newX, (int)newY);
+            control.Width = (int)(originalControlRect.Width * xRatio);
+            control.Height = (int)(originalControlRect.Height * yRatio);
+
+            float ratio = xRatio;
+            if (xRatio >= yRatio)
+                ratio = yRatio;
+
+            float newFontSize = originalFontSize * ratio * fontScale;
+            Font newFont = new Font(control.Font.FontFamily, newFontSize);
+            control.Font = newFont;
+        }
 
         private void number_click(object sender, EventArgs e)
         {

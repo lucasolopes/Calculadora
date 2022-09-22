@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbl_name = new System.Windows.Forms.Label();
             this.btn_history = new System.Windows.Forms.Button();
             this.lbl_type = new System.Windows.Forms.Label();
-            this.bnt_menu = new System.Windows.Forms.Button();
+            this.btn_menu = new System.Windows.Forms.Button();
             this.lbl_history = new System.Windows.Forms.Label();
             this.txt_input = new System.Windows.Forms.TextBox();
             this.btn_hist = new System.Windows.Forms.Button();
@@ -66,22 +66,22 @@
             this.btn_porcent = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // lbl_name
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Calculadora";
+            this.lbl_name.AutoSize = true;
+            this.lbl_name.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbl_name.Location = new System.Drawing.Point(12, 9);
+            this.lbl_name.Name = "lbl_name";
+            this.lbl_name.Size = new System.Drawing.Size(88, 20);
+            this.lbl_name.TabIndex = 0;
+            this.lbl_name.Text = "Calculadora";
             // 
             // btn_history
             // 
             this.btn_history.BackColor = System.Drawing.Color.Transparent;
-            this.btn_history.Location = new System.Drawing.Point(269, 33);
+            this.btn_history.Location = new System.Drawing.Point(269, 38);
             this.btn_history.Name = "btn_history";
-            this.btn_history.Size = new System.Drawing.Size(53, 48);
+            this.btn_history.Size = new System.Drawing.Size(67, 48);
             this.btn_history.TabIndex = 2;
             this.btn_history.Text = "History";
             this.btn_history.UseVisualStyleBackColor = false;
@@ -96,15 +96,15 @@
             this.lbl_type.TabIndex = 1;
             this.lbl_type.Text = "Type";
             // 
-            // bnt_menu
+            // btn_menu
             // 
-            this.bnt_menu.BackColor = System.Drawing.Color.Transparent;
-            this.bnt_menu.Image = global::Calculadora.Properties.Resources.menu;
-            this.bnt_menu.Location = new System.Drawing.Point(1, 37);
-            this.bnt_menu.Name = "bnt_menu";
-            this.bnt_menu.Size = new System.Drawing.Size(49, 49);
-            this.bnt_menu.TabIndex = 0;
-            this.bnt_menu.UseVisualStyleBackColor = false;
+            this.btn_menu.BackColor = System.Drawing.Color.Transparent;
+            this.btn_menu.Image = global::Calculadora.Properties.Resources.menu;
+            this.btn_menu.Location = new System.Drawing.Point(1, 37);
+            this.btn_menu.Name = "btn_menu";
+            this.btn_menu.Size = new System.Drawing.Size(49, 49);
+            this.btn_menu.TabIndex = 0;
+            this.btn_menu.UseVisualStyleBackColor = false;
             // 
             // lbl_history
             // 
@@ -445,13 +445,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(338, 470);
+            this.ClientSize = new System.Drawing.Size(339, 464);
             this.Controls.Add(this.btn_history);
             this.Controls.Add(this.lbl_history);
             this.Controls.Add(this.lbl_type);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lbl_name);
             this.Controls.Add(this.btn_hist);
-            this.Controls.Add(this.bnt_menu);
+            this.Controls.Add(this.btn_menu);
             this.Controls.Add(this.txt_input);
             this.Controls.Add(this.btn_Ms);
             this.Controls.Add(this.btn_equal);
@@ -482,7 +482,6 @@
             this.Controls.Add(this.btn_2);
             this.Controls.Add(this.btn_8);
             this.Controls.Add(this.btn_5);
-            this.MinimumSize = new System.Drawing.Size(354, 509);
             this.Name = "Main";
             this.ShowIcon = false;
             this.Load += new System.EventHandler(this.Main_Load);
@@ -493,10 +492,10 @@
         }
 
         #endregion
-        private Label label1;
+        private Label lbl_name;
         private Button btn_history;
         private Label lbl_type;
-        private Button bnt_menu;
+        private Button btn_menu;
         private Button btn_hist;
         private Button btn_Ms;
         private Button btn_Mminus;
