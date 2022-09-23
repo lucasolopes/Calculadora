@@ -424,6 +424,7 @@
             this.btn_porcent.TabIndex = 0;
             this.btn_porcent.Text = "%";
             this.btn_porcent.UseVisualStyleBackColor = true;
+            this.btn_porcent.Click += new System.EventHandler(this.operador_click);
             // 
             // Main
             // 

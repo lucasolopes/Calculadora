@@ -1,3 +1,4 @@
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Calculadora
@@ -11,7 +12,7 @@ namespace Calculadora
         private Rectangle buttonMrOriginalReact;
         private Rectangle buttonMplusOriginalReact;
         private Rectangle buttonMminusOriginalReact;
-        private Rectangle buttonMsOriginalReact;
+
 
         private Rectangle buttonPorcentOriginalReact;
         private Rectangle buttonClearOriginalReact;
@@ -51,7 +52,7 @@ namespace Calculadora
         private float buttonMrFontSize;
         private float buttonMplusFontSize;
         private float buttonMminusFontSize;
-        private float buttonMsFontSize;
+
 
         private float buttonPorcentFontSize;
         private float buttonClearFontSize;
@@ -95,7 +96,7 @@ namespace Calculadora
             buttonMrOriginalReact = new Rectangle(btn_MR.Location, btn_MR.Size);
             buttonMplusOriginalReact = new Rectangle(btn_Mplus.Location, btn_Mplus.Size);
             buttonMminusOriginalReact = new Rectangle(btn_Mminus.Location, btn_Mminus.Size);
-
+            buttonPorcentOriginalReact = new Rectangle(btn_porcent.Location, btn_porcent.Size);
             buttonClearOriginalReact = new Rectangle(btn_clear.Location, btn_clear.Size);
             buttonClearAllOriginalReact = new Rectangle(btn_clearAll.Location, btn_clearAll.Size);
             buttonDellOriginalReact = new Rectangle(btn_ruber.Location, btn_ruber.Size);
@@ -232,8 +233,9 @@ namespace Calculadora
         Double resultValue = 0;
         String value = "";
         String operationPerformed = "";
+        String operatorAux = "";
         bool isOperationPerformed = false;
-
+        bool operationPercent = false;
 
         private void number_click(object sender, EventArgs e)
         {
@@ -259,31 +261,68 @@ namespace Calculadora
         {
             Button buttonaActivated = (Button)sender;
 
-            if ((buttonaActivated.Name == "btn_aboutX"))
+
+
+            switch (buttonaActivated.Name)
             {
-                value = txt_input.Text;
-                operationPerformed = buttonaActivated.Text;
-                
-                btn_equal.PerformClick();
-                lbl_history.Text = "1 / " + value;
-                isOperationPerformed = true;
-            }
-            else if (resultValue != 0)
-            {
-                string aux = lbl_history.Text.Substring(lbl_history.Text.Length - 1, 1);
-                if(Regex.IsMatch(aux, @"^\d+$") || (isOperationPerformed == false))
+                case "btn_aboutX":
+
+                    value = txt_input.Text;
+                    operationPerformed = buttonaActivated.Text;
                     btn_equal.PerformClick();
-                operationPerformed = buttonaActivated.Text;
-                lbl_history.Text = resultValue + " " + operationPerformed;
-                isOperationPerformed = true;
+                    lbl_history.Text = "1 / " + value + " ";
+                    isOperationPerformed = false;
+
+                    break;
+                case "btn_rootOfTwo":
+
+                    value = txt_input.Text;
+                    operationPerformed = "root";
+                    btn_equal.PerformClick();
+                    lbl_history.Text = buttonaActivated.Text.Remove(buttonaActivated.Text.Length-1) + value + " ";
+                    isOperationPerformed = false;
+
+                    break;
+                case "btn_square":
+
+                    value = txt_input.Text;
+                    operationPerformed = buttonaActivated.Text;
+                    btn_equal.PerformClick();
+                    lbl_history.Text =  String.Format("srq({0})",value);
+                    isOperationPerformed = false;
+
+                    break;
+                case "btn_porcent":
+                    operationPerformed = "percent";
+                    btn_equal.PerformClick();
+                    isOperationPerformed = false;
+
+                    break;
+
+                default:
+                    if (resultValue != 0)
+                    {
+
+                        string aux = lbl_history.Text.Substring(lbl_history.Text.Length - 1, 1);
+                        if (Regex.IsMatch(aux, @"^\d+$") || (isOperationPerformed == true))
+                            btn_equal.PerformClick();
+                        operationPerformed = buttonaActivated.Text;
+                        lbl_history.Text = resultValue + " " + operationPerformed;
+                        isOperationPerformed = true;
+                    }
+                    else
+                    {
+                        operationPerformed = buttonaActivated.Text;
+                        resultValue = Double.Parse(txt_input.Text);
+                        lbl_history.Text = resultValue + " " + operationPerformed;
+                        isOperationPerformed = true;
+                    }
+                    value = txt_input.Text;
+                    operatorAux = buttonaActivated.Text;
+                    break;
+                    
             }
-            else
-            {
-                operationPerformed = buttonaActivated.Text;
-                resultValue = Double.Parse(txt_input.Text);
-                lbl_history.Text = resultValue + " " + operationPerformed;
-                isOperationPerformed = true;
-            }
+
         }
 
         private void clear_click(object sender, EventArgs e)
@@ -306,15 +345,14 @@ namespace Calculadora
                 txt_input.Text = "0";
         }
 
-        private void commun_operation()
-        {
-
-        }
-
 
         private void equal_click(object sender, EventArgs e)
         {
-            lbl_history.Text += " " + txt_input.Text + "=  ";
+            if (operationPercent == false)
+                lbl_history.Text += " " + txt_input.Text + "=  ";
+            else {
+                lbl_history.Text += " = ";
+            }
             switch (operationPerformed)
             {
                 case "+":
@@ -332,11 +370,25 @@ namespace Calculadora
                 case "1/X":
                     txt_input.Text = (1 / Double.Parse(txt_input.Text)).ToString();
                     break;
+                case "X²":
+                    txt_input.Text = (Double.Parse(txt_input.Text) * Double.Parse(txt_input.Text)).ToString();
+                    break;
+                case "root":
+                    txt_input.Text = Math.Sqrt(Double.Parse(txt_input.Text)).ToString();
+                    break;
+                case "percent":
+                    txt_input.Text = ((Double.Parse(value) * Double.Parse(txt_input.Text)) / 100).ToString();
+                    lbl_history.Text = value +  operatorAux + txt_input.Text;
+                    resultValue = Double.Parse(value);
+                    operationPerformed = operatorAux;
+                    operationPercent = true;
+                    break;
                 default:
                     break;
             }
             isOperationPerformed = false;
-            resultValue = Double.Parse(txt_input.Text);
+            if (!operationPercent)
+                resultValue = Double.Parse(txt_input.Text);
             
         }
 
