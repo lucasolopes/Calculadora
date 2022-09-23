@@ -230,6 +230,7 @@ namespace Calculadora
 
         Double memory = 0;
         Double resultValue = 0;
+        String value = "";
         String operationPerformed = "";
         bool isOperationPerformed = false;
 
@@ -258,10 +259,19 @@ namespace Calculadora
         {
             Button buttonaActivated = (Button)sender;
 
-            if (resultValue != 0)
+            if ((buttonaActivated.Name == "btn_aboutX"))
+            {
+                value = txt_input.Text;
+                operationPerformed = buttonaActivated.Text;
+                
+                btn_equal.PerformClick();
+                lbl_history.Text = "1 / " + value;
+                isOperationPerformed = true;
+            }
+            else if (resultValue != 0)
             {
                 string aux = lbl_history.Text.Substring(lbl_history.Text.Length - 1, 1);
-                if(Regex.IsMatch(aux, @"^\d+$"))
+                if(Regex.IsMatch(aux, @"^\d+$") || (isOperationPerformed == false))
                     btn_equal.PerformClick();
                 operationPerformed = buttonaActivated.Text;
                 lbl_history.Text = resultValue + " " + operationPerformed;
@@ -296,6 +306,12 @@ namespace Calculadora
                 txt_input.Text = "0";
         }
 
+        private void commun_operation()
+        {
+
+        }
+
+
         private void equal_click(object sender, EventArgs e)
         {
             lbl_history.Text += " " + txt_input.Text + "=  ";
@@ -307,16 +323,19 @@ namespace Calculadora
                 case "-":
                     txt_input.Text = (resultValue - Double.Parse(txt_input.Text)).ToString();
                     break;
-                case "*":
+                case "X":
                     txt_input.Text = (resultValue * Double.Parse(txt_input.Text)).ToString();
                     break;
                 case "/":
                     txt_input.Text = (resultValue / Double.Parse(txt_input.Text)).ToString();
                     break;
+                case "1/X":
+                    txt_input.Text = (1 / Double.Parse(txt_input.Text)).ToString();
+                    break;
                 default:
                     break;
             }
-            
+            isOperationPerformed = false;
             resultValue = Double.Parse(txt_input.Text);
             
         }
