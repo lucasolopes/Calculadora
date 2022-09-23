@@ -1,3 +1,5 @@
+using System.Text.RegularExpressions;
+
 namespace Calculadora
 {
     public partial class Main : Form
@@ -10,8 +12,7 @@ namespace Calculadora
         private Rectangle buttonMplusOriginalReact;
         private Rectangle buttonMminusOriginalReact;
         private Rectangle buttonMsOriginalReact;
-        private Rectangle buttonMhistOriginalReact;
-        private Rectangle buttonHistoryOriginalReact;
+
         private Rectangle buttonPorcentOriginalReact;
         private Rectangle buttonClearOriginalReact;
         private Rectangle buttonClearAllOriginalReact;
@@ -51,8 +52,7 @@ namespace Calculadora
         private float buttonMplusFontSize;
         private float buttonMminusFontSize;
         private float buttonMsFontSize;
-        private float buttonMhistFontSize;
-        private float buttonHistoryFontSize;
+
         private float buttonPorcentFontSize;
         private float buttonClearFontSize;
         private float buttonClearAllFontSize;
@@ -95,10 +95,7 @@ namespace Calculadora
             buttonMrOriginalReact = new Rectangle(btn_MR.Location, btn_MR.Size);
             buttonMplusOriginalReact = new Rectangle(btn_Mplus.Location, btn_Mplus.Size);
             buttonMminusOriginalReact = new Rectangle(btn_Mminus.Location, btn_Mminus.Size);
-            buttonMsOriginalReact = new Rectangle(btn_Ms.Location, btn_Ms.Size);
-            buttonMhistOriginalReact = new Rectangle(btn_hist.Location, btn_hist.Size);
-            buttonHistoryOriginalReact = new Rectangle(btn_history.Location, btn_history.Size);
-            buttonPorcentOriginalReact = new Rectangle(btn_porcent.Location, btn_porcent.Size);
+
             buttonClearOriginalReact = new Rectangle(btn_clear.Location, btn_clear.Size);
             buttonClearAllOriginalReact = new Rectangle(btn_clearAll.Location, btn_clearAll.Size);
             buttonDellOriginalReact = new Rectangle(btn_ruber.Location, btn_ruber.Size);
@@ -132,9 +129,6 @@ namespace Calculadora
             buttonMrFontSize = btn_MR.Font.Size;
             buttonMplusFontSize = btn_Mplus.Font.Size;
             buttonMminusFontSize = btn_Mminus.Font.Size;
-            buttonMsFontSize = btn_Ms.Font.Size;
-            buttonMhistFontSize = btn_hist.Font.Size;
-            buttonHistoryFontSize = btn_history.Font.Size;
             buttonPorcentFontSize = btn_porcent.Font.Size;
             buttonClearFontSize = btn_clear.Font.Size;
             buttonClearAllFontSize = btn_clearAll.Font.Size;
@@ -184,8 +178,6 @@ namespace Calculadora
             ResizeControl(buttonMrOriginalReact, btn_MR, buttonMrFontSize);
             ResizeControl(buttonMplusOriginalReact, btn_Mplus, buttonMplusFontSize);
             ResizeControl(buttonMminusOriginalReact, btn_Mminus, buttonMminusFontSize);
-            ResizeControl(buttonMsOriginalReact, btn_Ms, buttonMsFontSize);
-            ResizeControl(buttonMhistOriginalReact, btn_hist, buttonMhistFontSize);
             ResizeControl(buttonPorcentOriginalReact, btn_porcent, buttonPorcentFontSize);
             ResizeControl(buttonClearOriginalReact, btn_clear, buttonClearFontSize);
             ResizeControl(buttonClearAllOriginalReact, btn_clearAll, buttonClearAllFontSize);
@@ -210,7 +202,6 @@ namespace Calculadora
             ResizeControl(button0OriginalReact, btn_0,button0FontSize);
             ResizeControl(buttonSeparatorOriginalReact, btn_separator,buttonSeparatorFontSize);
             ResizeControl(buttonEqualOriginalReact, btn_equal,buttonEqualFontSize);
-            ResizeControl(buttonHistoryOriginalReact, btn_history, buttonHistoryFontSize);
         }
 
 
@@ -236,9 +227,12 @@ namespace Calculadora
             control.Font = newFont;
         }
 
+
+        Double memory = 0;
         Double resultValue = 0;
         String operationPerformed = "";
         bool isOperationPerformed = false;
+
 
         private void number_click(object sender, EventArgs e)
         {
@@ -266,7 +260,9 @@ namespace Calculadora
 
             if (resultValue != 0)
             {
-                btn_equal.PerformClick();
+                string aux = lbl_history.Text.Substring(lbl_history.Text.Length - 1, 1);
+                if(Regex.IsMatch(aux, @"^\d+$"))
+                    btn_equal.PerformClick();
                 operationPerformed = buttonaActivated.Text;
                 lbl_history.Text = resultValue + " " + operationPerformed;
                 isOperationPerformed = true;
@@ -330,6 +326,21 @@ namespace Calculadora
             txt_input.Text = (Double.Parse(txt_input.Text) * -1.0).ToString();
         }
 
-        
+        private void btn_Mplus_Click(object sender, EventArgs e)
+        {
+            memory = memory + Double.Parse(txt_input.Text);
+            isOperationPerformed = true;
+        }
+
+        private void btn_Mminus_Click(object sender, EventArgs e)
+        {
+            memory = memory - Double.Parse(txt_input.Text);
+            isOperationPerformed = true;
+        }
+
+        private void btn_MR_Click(object sender, EventArgs e)
+        {
+            txt_input.Text = memory.ToString();
+        }
     }
 }

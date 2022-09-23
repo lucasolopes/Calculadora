@@ -29,13 +29,10 @@
         private void InitializeComponent()
         {
             this.lbl_name = new System.Windows.Forms.Label();
-            this.btn_history = new System.Windows.Forms.Button();
             this.lbl_type = new System.Windows.Forms.Label();
             this.btn_menu = new System.Windows.Forms.Button();
             this.lbl_history = new System.Windows.Forms.Label();
             this.txt_input = new System.Windows.Forms.TextBox();
-            this.btn_hist = new System.Windows.Forms.Button();
-            this.btn_Ms = new System.Windows.Forms.Button();
             this.btn_Mminus = new System.Windows.Forms.Button();
             this.btn_Mplus = new System.Windows.Forms.Button();
             this.btn_MR = new System.Windows.Forms.Button();
@@ -75,16 +72,6 @@
             this.lbl_name.Size = new System.Drawing.Size(88, 20);
             this.lbl_name.TabIndex = 0;
             this.lbl_name.Text = "Calculadora";
-            // 
-            // btn_history
-            // 
-            this.btn_history.BackColor = System.Drawing.Color.Transparent;
-            this.btn_history.Location = new System.Drawing.Point(269, 38);
-            this.btn_history.Name = "btn_history";
-            this.btn_history.Size = new System.Drawing.Size(67, 48);
-            this.btn_history.TabIndex = 2;
-            this.btn_history.Text = "History";
-            this.btn_history.UseVisualStyleBackColor = false;
             // 
             // lbl_type
             // 
@@ -132,27 +119,6 @@
             this.txt_input.Text = "0";
             this.txt_input.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // btn_hist
-            // 
-            this.btn_hist.BackColor = System.Drawing.Color.Transparent;
-            this.btn_hist.Enabled = false;
-            this.btn_hist.Location = new System.Drawing.Point(279, 167);
-            this.btn_hist.Name = "btn_hist";
-            this.btn_hist.Size = new System.Drawing.Size(57, 27);
-            this.btn_hist.TabIndex = 5;
-            this.btn_hist.Text = "M >";
-            this.btn_hist.UseVisualStyleBackColor = false;
-            // 
-            // btn_Ms
-            // 
-            this.btn_Ms.BackColor = System.Drawing.Color.Transparent;
-            this.btn_Ms.Location = new System.Drawing.Point(224, 167);
-            this.btn_Ms.Name = "btn_Ms";
-            this.btn_Ms.Size = new System.Drawing.Size(57, 27);
-            this.btn_Ms.TabIndex = 4;
-            this.btn_Ms.Text = "MS";
-            this.btn_Ms.UseVisualStyleBackColor = false;
-            // 
             // btn_Mminus
             // 
             this.btn_Mminus.BackColor = System.Drawing.Color.Transparent;
@@ -162,6 +128,7 @@
             this.btn_Mminus.TabIndex = 3;
             this.btn_Mminus.Text = "M-";
             this.btn_Mminus.UseVisualStyleBackColor = false;
+            this.btn_Mminus.Click += new System.EventHandler(this.btn_Mminus_Click);
             // 
             // btn_Mplus
             // 
@@ -172,22 +139,22 @@
             this.btn_Mplus.TabIndex = 2;
             this.btn_Mplus.Text = "M+";
             this.btn_Mplus.UseVisualStyleBackColor = false;
+            this.btn_Mplus.Click += new System.EventHandler(this.btn_Mplus_Click);
             // 
             // btn_MR
             // 
             this.btn_MR.BackColor = System.Drawing.Color.Transparent;
-            this.btn_MR.Enabled = false;
             this.btn_MR.Location = new System.Drawing.Point(59, 167);
             this.btn_MR.Name = "btn_MR";
             this.btn_MR.Size = new System.Drawing.Size(57, 27);
             this.btn_MR.TabIndex = 1;
             this.btn_MR.Text = "MR";
             this.btn_MR.UseVisualStyleBackColor = false;
+            this.btn_MR.Click += new System.EventHandler(this.btn_MR_Click);
             // 
             // btn_MC
             // 
             this.btn_MC.BackColor = System.Drawing.Color.Transparent;
-            this.btn_MC.Enabled = false;
             this.btn_MC.Location = new System.Drawing.Point(4, 167);
             this.btn_MC.Name = "btn_MC";
             this.btn_MC.Size = new System.Drawing.Size(57, 27);
@@ -246,7 +213,7 @@
             this.btn_division.Name = "btn_division";
             this.btn_division.Size = new System.Drawing.Size(84, 45);
             this.btn_division.TabIndex = 19;
-            this.btn_division.Text = "%";
+            this.btn_division.Text = "/";
             this.btn_division.UseVisualStyleBackColor = true;
             this.btn_division.Click += new System.EventHandler(this.operador_click);
             // 
@@ -314,6 +281,7 @@
             this.btn_rootOfTwo.TabIndex = 13;
             this.btn_rootOfTwo.Text = "²√x";
             this.btn_rootOfTwo.UseVisualStyleBackColor = true;
+            this.btn_rootOfTwo.Click += new System.EventHandler(this.operador_click);
             // 
             // btn_clearAll
             // 
@@ -379,6 +347,7 @@
             this.btn_square.TabIndex = 7;
             this.btn_square.Text = "X²";
             this.btn_square.UseVisualStyleBackColor = true;
+            this.btn_square.Click += new System.EventHandler(this.operador_click);
             // 
             // btn_clear
             // 
@@ -444,6 +413,7 @@
             this.btn_aboutX.TabIndex = 1;
             this.btn_aboutX.Text = "1/X";
             this.btn_aboutX.UseVisualStyleBackColor = true;
+            this.btn_aboutX.Click += new System.EventHandler(this.operador_click);
             // 
             // btn_porcent
             // 
@@ -461,14 +431,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(339, 464);
-            this.Controls.Add(this.btn_history);
             this.Controls.Add(this.lbl_history);
             this.Controls.Add(this.lbl_type);
             this.Controls.Add(this.lbl_name);
-            this.Controls.Add(this.btn_hist);
             this.Controls.Add(this.btn_menu);
             this.Controls.Add(this.txt_input);
-            this.Controls.Add(this.btn_Ms);
             this.Controls.Add(this.btn_equal);
             this.Controls.Add(this.btn_Mminus);
             this.Controls.Add(this.btn_add);
@@ -509,11 +476,8 @@
 
         #endregion
         private Label lbl_name;
-        private Button btn_history;
         private Label lbl_type;
         private Button btn_menu;
-        private Button btn_hist;
-        private Button btn_Ms;
         private Button btn_Mminus;
         private Button btn_Mplus;
         private Button btn_MR;
