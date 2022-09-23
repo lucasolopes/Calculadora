@@ -109,9 +109,9 @@
             // lbl_history
             // 
             this.lbl_history.AutoSize = true;
-            this.lbl_history.Location = new System.Drawing.Point(312, 94);
+            this.lbl_history.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lbl_history.Location = new System.Drawing.Point(305, 99);
             this.lbl_history.Name = "lbl_history";
-            this.lbl_history.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lbl_history.Size = new System.Drawing.Size(13, 15);
             this.lbl_history.TabIndex = 1;
             this.lbl_history.Text = "0";
@@ -122,10 +122,15 @@
             this.txt_input.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_input.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txt_input.Location = new System.Drawing.Point(12, 125);
+            this.txt_input.MaxLength = 0;
             this.txt_input.Name = "txt_input";
             this.txt_input.ReadOnly = true;
+            this.txt_input.ShortcutsEnabled = false;
             this.txt_input.Size = new System.Drawing.Size(317, 36);
             this.txt_input.TabIndex = 0;
+            this.txt_input.TabStop = false;
+            this.txt_input.Text = "0";
+            this.txt_input.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btn_hist
             // 
@@ -199,6 +204,7 @@
             this.btn_equal.TabIndex = 23;
             this.btn_equal.Text = "=";
             this.btn_equal.UseVisualStyleBackColor = true;
+            this.btn_equal.Click += new System.EventHandler(this.equal_click);
             // 
             // btn_add
             // 
@@ -209,6 +215,7 @@
             this.btn_add.TabIndex = 22;
             this.btn_add.Text = "+";
             this.btn_add.UseVisualStyleBackColor = true;
+            this.btn_add.Click += new System.EventHandler(this.operador_click);
             // 
             // btn_subtract
             // 
@@ -219,6 +226,7 @@
             this.btn_subtract.TabIndex = 21;
             this.btn_subtract.Text = "-";
             this.btn_subtract.UseVisualStyleBackColor = true;
+            this.btn_subtract.Click += new System.EventHandler(this.operador_click);
             // 
             // btn_multiply
             // 
@@ -229,6 +237,7 @@
             this.btn_multiply.TabIndex = 20;
             this.btn_multiply.Text = "X";
             this.btn_multiply.UseVisualStyleBackColor = true;
+            this.btn_multiply.Click += new System.EventHandler(this.operador_click);
             // 
             // btn_division
             // 
@@ -239,6 +248,7 @@
             this.btn_division.TabIndex = 19;
             this.btn_division.Text = "%";
             this.btn_division.UseVisualStyleBackColor = true;
+            this.btn_division.Click += new System.EventHandler(this.operador_click);
             // 
             // btn_ruber
             // 
@@ -249,6 +259,7 @@
             this.btn_ruber.TabIndex = 18;
             this.btn_ruber.Text = "←";
             this.btn_ruber.UseVisualStyleBackColor = true;
+            this.btn_ruber.Click += new System.EventHandler(this.btn_ruber_Click);
             // 
             // btn_separator
             // 
@@ -257,8 +268,9 @@
             this.btn_separator.Name = "btn_separator";
             this.btn_separator.Size = new System.Drawing.Size(83, 45);
             this.btn_separator.TabIndex = 17;
-            this.btn_separator.Text = ",";
+            this.btn_separator.Text = ".";
             this.btn_separator.UseVisualStyleBackColor = true;
+            this.btn_separator.Click += new System.EventHandler(this.number_click);
             // 
             // btn_3
             // 
@@ -312,6 +324,7 @@
             this.btn_clearAll.TabIndex = 12;
             this.btn_clearAll.Text = "C";
             this.btn_clearAll.UseVisualStyleBackColor = true;
+            this.btn_clearAll.Click += new System.EventHandler(this.clear_all_click);
             // 
             // btn_0
             // 
@@ -376,6 +389,7 @@
             this.btn_clear.TabIndex = 6;
             this.btn_clear.Text = "CE";
             this.btn_clear.UseVisualStyleBackColor = true;
+            this.btn_clear.Click += new System.EventHandler(this.clear_click);
             // 
             // btn_invert
             // 
@@ -386,6 +400,7 @@
             this.btn_invert.TabIndex = 5;
             this.btn_invert.Text = "+/-";
             this.btn_invert.UseVisualStyleBackColor = true;
+            this.btn_invert.Click += new System.EventHandler(this.inverse_click);
             // 
             // btn_1
             // 
@@ -482,6 +497,7 @@
             this.Controls.Add(this.btn_2);
             this.Controls.Add(this.btn_8);
             this.Controls.Add(this.btn_5);
+            this.MinimumSize = new System.Drawing.Size(355, 503);
             this.Name = "Main";
             this.ShowIcon = false;
             this.Load += new System.EventHandler(this.Main_Load);

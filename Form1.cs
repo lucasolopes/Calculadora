@@ -236,29 +236,100 @@ namespace Calculadora
             control.Font = newFont;
         }
 
+        Double resultValue = 0;
+        String operationPerformed = "";
+        bool isOperationPerformed = false;
+
         private void number_click(object sender, EventArgs e)
         {
+            if ((txt_input.Text == "0") || (isOperationPerformed))
+                txt_input.Clear();
+
+            isOperationPerformed = false;
+            Button buttonaActivated = (Button)sender;
+            if (txt_input.Text.Length <= 14)
+            {
+                if (buttonaActivated.Text == ".")
+                {
+                    if (!txt_input.Text.Contains("."))
+                        txt_input.Text += buttonaActivated.Text;
+                }
+                else
+                    txt_input.Text += buttonaActivated.Text;
+            }
 
         }
 
-        private void btn_Minimize_Click(object sender, EventArgs e)
+        private void operador_click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Minimized;
-        }
+            Button buttonaActivated = (Button)sender;
 
-        private void btn_Maximize_Click(object sender, EventArgs e)
-        {
-            if (this.WindowState == FormWindowState.Maximized)
-                this.WindowState = FormWindowState.Normal;
+            if (resultValue != 0)
+            {
+                btn_equal.PerformClick();
+                operationPerformed = buttonaActivated.Text;
+                lbl_history.Text = resultValue + " " + operationPerformed;
+                isOperationPerformed = true;
+            }
             else
-                this.WindowState = FormWindowState.Maximized;
+            {
+                operationPerformed = buttonaActivated.Text;
+                resultValue = Double.Parse(txt_input.Text);
+                lbl_history.Text = resultValue + " " + operationPerformed;
+                isOperationPerformed = true;
+            }
         }
 
-        private void btn_Close_Click(object sender, EventArgs e)
+        private void clear_click(object sender, EventArgs e)
         {
-            Environment.Exit(0);
+            txt_input.Text = "0";
         }
 
-       
+        private void clear_all_click(object sender, EventArgs e)
+        {
+            txt_input.Text = "0";
+            lbl_history.Text = "0";
+            resultValue = 0;
+        }
+        private void btn_ruber_Click(object sender, EventArgs e)
+        {
+           
+            if ((txt_input.Text != "0") && (txt_input.Text != ""))
+                txt_input.Text = txt_input.Text.Remove(txt_input.Text.Length - 1);
+            if (txt_input.Text == "")
+                txt_input.Text = "0";
+        }
+
+        private void equal_click(object sender, EventArgs e)
+        {
+            lbl_history.Text += " " + txt_input.Text + "=  ";
+            switch (operationPerformed)
+            {
+                case "+":
+                    txt_input.Text = (resultValue + Double.Parse(txt_input.Text)).ToString();
+                    break;
+                case "-":
+                    txt_input.Text = (resultValue - Double.Parse(txt_input.Text)).ToString();
+                    break;
+                case "*":
+                    txt_input.Text = (resultValue * Double.Parse(txt_input.Text)).ToString();
+                    break;
+                case "/":
+                    txt_input.Text = (resultValue / Double.Parse(txt_input.Text)).ToString();
+                    break;
+                default:
+                    break;
+            }
+            
+            resultValue = Double.Parse(txt_input.Text);
+            
+        }
+
+        private void inverse_click(object sender, EventArgs e)
+        {
+            txt_input.Text = (Double.Parse(txt_input.Text) * -1.0).ToString();
+        }
+
+        
     }
 }
