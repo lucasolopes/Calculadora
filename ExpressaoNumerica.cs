@@ -15,6 +15,7 @@ namespace Calculadora
         private string segundoValor = null;
         private string operador = null;
         private string Expressao = null;
+
         public string PrimeiroValor { get => primeiroValor; set => primeiroValor = value; }
 
         public string Operador { get => operador; set => operador = value; }

@@ -160,8 +160,9 @@
             this.btn_separator.Name = "btn_separator";
             this.btn_separator.Size = new System.Drawing.Size(83, 45);
             this.btn_separator.TabIndex = 17;
-            this.btn_separator.Text = ".";
+            this.btn_separator.Text = ",";
             this.btn_separator.UseVisualStyleBackColor = true;
+            this.btn_separator.Click += new System.EventHandler(this.btn_separator_Click);
             // 
             // btn_3
             // 

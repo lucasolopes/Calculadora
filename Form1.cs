@@ -225,9 +225,6 @@ namespace Calculadora
         }
 
 
-
-
-
         private void clear_click(object sender, EventArgs e)
         {
             limparInput();
@@ -239,12 +236,6 @@ namespace Calculadora
             limparTudo();
 
         }
-
-
-
-
-
-
 
 
         string inFocus = "numero";
@@ -313,7 +304,12 @@ namespace Calculadora
         }
 
 
-
+        private void btn_separator_Click(object sender, EventArgs e)
+        {
+            if (!txt_input.Text.Contains(","))
+                txt_input.Text += ",";
+                clearInput = false;
+        }
 
         private void btn_ruber_Click(object sender, EventArgs e)
         {
@@ -326,6 +322,7 @@ namespace Calculadora
             }
             inFocus = "numero";
         }
+
 
     }
 }
